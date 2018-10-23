@@ -1,7 +1,9 @@
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -18,12 +20,13 @@ import org.farng.mp3.TagException;
 public class servletupload extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, TagException {
+            throws ServletException, IOException, TagException, NamingException, SQLException {
         //   response.setContentType("text/html;charset=UTF-8");
 
         Part filepart = request.getPart("file");
         String filename = filepart.getSubmittedFileName();
-        Utils.findtags(filepart);
+        Utils.blob(filepart, filename);
+        //Utils.findtags(filepart);
         RequestDispatcher rd = request.getRequestDispatcher("/lyricsjsp.jsp");
         rd.include(request, response);
 
@@ -38,6 +41,10 @@ public class servletupload extends HttpServlet {
             processRequest(request, response);
         } catch (TagException ex) {
             Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -47,6 +54,10 @@ public class servletupload extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (TagException ex) {
+            Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (NamingException ex) {
+            Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(servletupload.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
