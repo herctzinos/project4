@@ -2,6 +2,7 @@
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -13,18 +14,21 @@ import org.farng.mp3.TagException;
 
 @WebServlet(name = "FileUpload", urlPatterns = {"/servletupload"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024,
-        maxFileSize = 1024 * 1024 * 5, maxRequestSize = 1024 * 1024 * 5 * 5)
+        maxFileSize = 1024 * 1024 * 30, maxRequestSize = 1024 * 1024 * 5 * 5)
 public class servletupload extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, TagException {
-        response.setContentType("text/html;charset=UTF-8");
+        //   response.setContentType("text/html;charset=UTF-8");
 
         Part filepart = request.getPart("file");
         String filename = filepart.getSubmittedFileName();
-       Utils.findtags(filepart);
-   //     filepart.write("C:\\Users\\Herc\\Desktop\\Test\\" + filename);
+        Utils.findtags(filepart);
+        RequestDispatcher rd = request.getRequestDispatcher("/lyricsjsp.jsp");
+        rd.include(request, response);
 
+        //gia na kanoume setBlob tha valoume filepart.getInputStream
+        //     filepart.write("C:\\Users\\Herc\\Desktop\\Test\\" + filename); edw to apothikevoume se arxeio ston skliro
     }
 
     @Override
