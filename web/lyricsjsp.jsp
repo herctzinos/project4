@@ -10,14 +10,17 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-
-
-
+        <title>MP3 analysis</title>
     </head>
     <body>
 
         <%=request.getAttribute("lyrics")%>
+        <br> <%=request.getAttribute("title")%>
+        <br>   <%=request.getAttribute("artist")%>
+        <br>    <%=request.getAttribute("album")%>
+        <br>     <%=request.getAttribute("year")%>
+        <br>     <%=request.getAttribute("coverart")%>
+
 
     </body>
 </html>

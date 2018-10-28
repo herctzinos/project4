@@ -4,9 +4,17 @@
         <servlet-name>servletup</servlet-name>
         <servlet-class>servletup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>showall</servlet-name>
+        <servlet-class>Controllers.showall</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>servletup</servlet-name>
         <url-pattern>/servletup</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showall</servlet-name>
+        <url-pattern>/showall</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

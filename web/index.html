@@ -1,24 +1,56 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
+
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <style>
+            body  {
+                background-image: url("http://hdqwalls.com/wallpapers/bthumb/blade-runner-2049-fan-art-53.jpg");
+                background-repeat: no-repeat;
+                background-size: cover;
+
+            }
+
+            div{
+                color:  darkgrey;
+                font-family: palatino;
+                text-align: center;
+                opacity: 0.5;
+                font-size: 20px;
+
+            }
+            form{
+                text-align: center;
+
+            }
+            input{
+                border:darkgray;
+                font-family: palatino;
+                color: crimson;
+                background-color: black;
+                font-weight: bold;
+                font-size: 20px;
+            }
+
+
+        </style>
+        <title>MP3 library</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
         <form method="post" action="servletupload" enctype="multipart/form-data"> 
-<!--            mono post gia na stelnoume arxeia-->
             <div>
                 <label for="file">Choose file to upload</label>
                 <input type="file" id="file" name="file">
             </div>
             <div>
                 <button>Submit</button>
+            </div>
+        </form>
+        <form method="post" action="showall" > 
+            <div>Or press the below to show everything in your library</div>
+            <div>
+                <button>Show all</button>
             </div>
         </form>
     </body>
