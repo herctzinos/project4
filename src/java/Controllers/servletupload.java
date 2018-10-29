@@ -1,6 +1,5 @@
 package Controllers;
 
-
 import java.io.File;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
@@ -47,9 +46,7 @@ public class servletupload extends HttpServlet {
         Utils.blob(data, tag1.getSongTitle(), tag1.getAlbumTitle(), tag1.getLeadArtist(), tag1.getYearReleased(), lyrics, coverart);
 
         request = Utils.req(tag1, lyrics, coverart, request);
-
         RequestDispatcher rd = request.getRequestDispatcher("/lyricsjsp.jsp");
-
         rd.include(request, response);
     }
 
@@ -77,5 +74,4 @@ public class servletupload extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-
 }

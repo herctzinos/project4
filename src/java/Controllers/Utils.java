@@ -10,9 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -64,7 +62,6 @@ public class Utils {
         pstm.setString(7, coverart);
 
         pstm.executeUpdate();
-
     }
 
     public static String titlefixer(String sentence) {
@@ -88,7 +85,6 @@ public class Utils {
         conn.setRequestMethod("GET");
         conn.setRequestProperty("Accept", "application/json");
         if (conn.getResponseCode() != 200) {
-            //throw new RuntimeException("Failed:HTTP error code:" + conn.getResponseCode());
             throw new RuntimeException("The selected song was not found");
         }
         BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));

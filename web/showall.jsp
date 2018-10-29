@@ -14,13 +14,16 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Library</title>
     </head>
     <body>
         <table>
             <tr>
-                <th>Name</th>
-                <th>Surname</th>
+                <th>Title</th>
+                <th>Artist</th>
+                <th>Album</th>
+                <th>Year</th>
+                <th>Lyrics</th>
             </tr>
             <%
                 Connection con = null;
@@ -28,14 +31,16 @@
                 ResultSet rs = null;
                 String sql = "";
                 try {
-                     con = Utils.getConnection();
+                    con = Utils.getConnection();
                     sql = "SELECT * FROM songs.mp3";
                     pstm = con.prepareStatement(sql);
                     rs = pstm.executeQuery();
                     while (rs.next()) {%>
             <tr>
-                <td><%=rs.getString("artist")%></td>
                 <td><%=rs.getString("title")%></td>
+                <td><%=rs.getString("artist")%></td>
+                <td><%=rs.getString("album")%></td>
+                <td><%=rs.getString("year")%></td>
             </tr>
             <%}
                 } catch (SQLException e) {
