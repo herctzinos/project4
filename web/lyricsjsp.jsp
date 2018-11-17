@@ -10,16 +10,23 @@
 <html>
     <head>
         <style>
-            body{
-               
-                color: antiquewhite;
+            table {
+                border-collapse: collapse;
+                width: 100%;
             }
+            th, td {
+                text-align: left;
+                padding: 8px;
+                color:crimson;
+            }
+            tr:nth-child(even){background-color: #f2f2f2}
         </style>
+        
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>MP3 analysis</title>
     </head>
-    <body>
-        <table style="background-image: url( <%=request.getAttribute("cover")%>)">
+    <body style="background-image: url( <%=request.getAttribute("cover")%>)">
+        <table >
             <tr>
                 <th>Title</th>
                 <th>Artist</th>

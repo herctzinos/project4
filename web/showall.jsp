@@ -4,15 +4,28 @@
     Author     : Herc
 --%>
 
+<%@page import="Helpers.Utils"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.PreparedStatement"%>
 <%@page import="java.sql.Connection"%>
-<%@ page import="Controllers.Utils"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            table {
+                
+                border-collapse: collapse;
+                width: 100%;
+            }
+            th, td {
+                text-align: left;
+                padding: 8px;
+                
+            }
+            tr:nth-child(even){background-color: #f2f2f2}
+        </style>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Library</title>
     </head>
@@ -23,7 +36,6 @@
                 <th>Artist</th>
                 <th>Album</th>
                 <th>Year</th>
-                <th>Lyrics</th>
             </tr>
             <%
                 Connection con = null;

@@ -1,5 +1,4 @@
-package Controllers;
-
+package Helpers;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -64,7 +63,7 @@ public class Utils {
         pstm.executeUpdate();
     }
 
-    public static String titlefixer(String sentence) {
+    public static String titlefixer(String sentence) { //method to modify sentences as needed to be used in the api
         String fix = "";
         String[] words1 = sentence.split("\\s");
         for (String w : words1) {

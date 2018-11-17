@@ -1,5 +1,6 @@
 package Controllers;
 
+import Helpers.Utils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.sql.SQLException;
@@ -33,19 +34,19 @@ public class servletupload extends HttpServlet {
 
         Part data = request.getPart("file");
         String filename = data.getSubmittedFileName();
-        InputStream input = data.getInputStream();
-        data.write("C:\\Mp3\\" + filename);
+        InputStream input = data.getInputStream();   //workaround to fix .write problem
+        data.write("C:\\Mp3\\" + filename);          
         input.close();
 
         File sourceFile = new File("C:\\Mp3\\" + filename);
         MP3File mp3file = new MP3File(sourceFile);
-        ID3v2_2 tag1 = (ID3v2_2) mp3file.getID3v2Tag();
+        ID3v2_2 tag1 = (ID3v2_2) mp3file.getID3v2Tag();    //tag retrieval
 
-        String lyrics = Utils.lyrics(tag1.getSongTitle(), tag1.getLeadArtist());
-        String coverart = Utils.coverart(tag1.getSongTitle(), tag1.getLeadArtist());
-        Utils.blob(data, tag1.getSongTitle(), tag1.getAlbumTitle(), tag1.getLeadArtist(), tag1.getYearReleased(), lyrics, coverart);
+        String lyrics = Utils.lyrics(tag1.getSongTitle(), tag1.getLeadArtist());  //method to get lyrics
+        String coverart = Utils.coverart(tag1.getSongTitle(), tag1.getLeadArtist()); //method to get coverart
+        Utils.blob(data, tag1.getSongTitle(), tag1.getAlbumTitle(), tag1.getLeadArtist(), tag1.getYearReleased(), lyrics, coverart); //method to save mp3 in the database
 
-        request = Utils.req(tag1, lyrics, coverart, request);
+        request = Utils.req(tag1, lyrics, coverart, request); //method to insert data to request
         RequestDispatcher rd = request.getRequestDispatcher("/lyricsjsp.jsp");
         rd.include(request, response);
     }
@@ -74,4 +75,4 @@ public class servletupload extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }
-}
+ }
